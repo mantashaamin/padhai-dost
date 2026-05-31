@@ -46,3 +46,19 @@ if st.button("Notes banao! 📝"):
             st.write(response.choices[0].message.content)
     else:
         st.warning("Pehle topic likho!")
+# ADD NEW CODE HERE  FOR PRACTICE QUESTION 👇
+st.divider()
+topic = st.text_input("Topic Likho(Practice question ke liye ):")
+if st.button("practice question"):
+    if topic :
+        with st.spinner("Practice Question bana raha hai"):
+            response = client.chat.completions.create(
+                model = "openrouter/auto",
+                messages=[{
+                    "role" : "user",
+                    "content": f"You are Padhai Dost. Generate 5 NCERT-style practice questions for {grade} student. Subject: {subject}. Topic: {topic}. Format: Question in English with Hinglish translation in brackets. Answer in proper NCERT English terms with Hinglish explanation in brackets. Include MCQ, fill in the blanks and short answer types. IMPORTANT: Use Hinglish only (mix of Hindi and English words), NOT pure Hindi script."
+                }]
+            )
+            st.write(response.choices[0].message.content)
+    else :
+        st.warning("pehle topic likho!")
