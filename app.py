@@ -1,6 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import streamlit as st
+import PyPDF2
 import os
 
 load_dotenv()
@@ -32,20 +33,36 @@ if st.button("Samjhao! 🚀"):
         st.warning("Pehle sawaal likho!")
 # ADD NEW CODE HERE  FOR NOTES 👇
 st.divider()
+
+st.subheader("📄 PDF se Padho!")
+
+uploaded_file = st.file_uploader("Chapter ka PDF upload karo:", type="pdf")
+pdf_text = ""
+if uploaded_file:
+    # Read PDF text
+    reader = PyPDF2.PdfReader(uploaded_file)
+    for page in reader.pages:
+        pdf_text += page.extract_text()
+    st.success("PDF pad liya! Ab notes ya questions maango 😊")
 topic = st.text_input("Topic likho (notes ke liye):")
 if st.button("Notes banao! 📝"):
-    if topic:
+    if topic or uploaded_file:
         with st.spinner("Notes ban rahe hain..."):
+            # Decide content based on PDF or topic
+            if uploaded_file:
+                content = f"You are Padhai Dost. Create clean revision notes in Hinglish for {grade} student. Subject: {subject}. Here is the chapter content: {pdf_text}. Create detailed notes from this content. STRICTLY Hinglish only, NO Hindi script."
+            else:
+                content = f"You are Padhai Dost. Create clean revision notes in Hinglish for {grade} student. Subject: {subject}. Topic: {topic}. STRICTLY Hinglish only, NO Hindi script."
             response = client.chat.completions.create(
                 model="openrouter/auto",
                 messages=[{
                     "role": "user",
-                    "content": f"You are Padhai Dost. Create clean revision notes in Hinglish for {grade} student. Subject: {subject}. Topic: {topic}. IMPORTANT: Use Hinglish only (mix of Hindi and English words), NOT pure Hindi script. Example: 'Plants sunlight use karke apna khana banate hain' not pure Hindi."
+                    "content": content
                 }]
             )
             st.write(response.choices[0].message.content)
     else:
-        st.warning("Pehle topic likho!")
+        st.warning("PDF upload karo ya Pehle topic likho!")
 # ADD NEW CODE HERE  FOR PRACTICE QUESTION 👇
 st.divider()
 topic = st.text_input("Topic Likho(Practice question ke liye ):")
