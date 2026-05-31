@@ -40,7 +40,7 @@ if st.button("Notes banao! 📝"):
                 model="openrouter/auto",
                 messages=[{
                     "role": "user",
-                    "content": f"You are Padhai Dost. Create clean revision notes in Hinglish for {grade} student. Subject: {subject}. Topic: {topic}"
+                    "content": f"You are Padhai Dost. Create clean revision notes in Hinglish for {grade} student. Subject: {subject}. Topic: {topic}. IMPORTANT: Use Hinglish only (mix of Hindi and English words), NOT pure Hindi script. Example: 'Plants sunlight use karke apna khana banate hain' not pure Hindi."
                 }]
             )
             st.write(response.choices[0].message.content)
@@ -56,7 +56,7 @@ if st.button("practice question"):
                 model = "openrouter/auto",
                 messages=[{
                     "role" : "user",
-                    "content": f"You are Padhai Dost. Generate 5 NCERT-style practice questions for {grade} student. Subject: {subject}. Topic: {topic}. Format: Question in English with Hinglish translation in brackets. Answer in proper NCERT English terms with Hinglish explanation in brackets. Include MCQ, fill in the blanks and short answer types. IMPORTANT: Use Hinglish only (mix of Hindi and English words), NOT pure Hindi script."
+                   "content": f"You are Padhai Dost. Generate 5 NCERT-style practice questions for {grade} student. Subject: {subject}. Topic: {topic}. Format: Question in English with Hinglish translation in brackets. Answer in proper NCERT English terms with Hinglish explanation in brackets. Include MCQ, fill in the blanks and short answer types. STRICTLY use Hinglish only - NO Hindi script/Devanagari script allowed anywhere. Write everything in Roman letters only. Example heading: '1. MCQ (Multiple Choice Question)' NOT '1. MCQ (बहुविकल्पीय प्रश्न)'"
                 }]
             )
             st.write(response.choices[0].message.content)
