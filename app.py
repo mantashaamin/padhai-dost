@@ -30,3 +30,19 @@ if st.button("Samjhao! 🚀"):
             st.write(response.choices[0].message.content)
     else:
         st.warning("Pehle sawaal likho!")
+# ADD NEW CODE HERE  FOR NOTES 👇
+st.divider()
+topic = st.text_input("Topic likho (notes ke liye):")
+if st.button("Notes banao! 📝"):
+    if topic:
+        with st.spinner("Notes ban rahe hain..."):
+            response = client.chat.completions.create(
+                model="openrouter/auto",
+                messages=[{
+                    "role": "user",
+                    "content": f"You are Padhai Dost. Create clean revision notes in Hinglish for {grade} student. Subject: {subject}. Topic: {topic}"
+                }]
+            )
+            st.write(response.choices[0].message.content)
+    else:
+        st.warning("Pehle topic likho!")
