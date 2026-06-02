@@ -129,71 +129,82 @@ RULES:
             st.write(response.choices[0].message.content)
     else:
         st.warning("PDF upload karo ya Pehle topic likho!")
-# ADD NEW CODE HERE  FOR PRACTICE QUESTION 👇
-st.divider()  
-
+st.divider()
 
 question_type = st.selectbox(
-    "Question Type",
-    [
-        "Mixed",
-        "MCQ Only",
-        "Fill in the Blanks",
-        "Short Answer",
-        "Exam Prep Mode"
-    ]
+"Question Type",
+[
+"Mixed",
+"MCQ Only",
+"Fill in the Blanks",
+"Short Answer",
+"Exam Prep Mode"
+]
 )
 
 topic = st.text_input("Topic Likho(Practice question ke liye ):")
-topic = st.text_input("Topic Likho(Practice question ke liye ):")
+
 if st.button("practice question"):
-    if topic or uploaded_file:
-        with st.spinner("Practice Question bana raha hai"):
-            if uploaded_file:
-                content = f"""
-    Generate 10 NCERT-style practice questions from this chapter.
+if topic or uploaded_file:
 
-    Class: {grade}
-    Subject: {subject}
+    with st.spinner("Practice Question bana raha hai"):
 
-    Chapter Content:
-    {pdf_text}
+        if uploaded_file:
+            content = f"""
+```
 
-    Include:
-    - MCQs
-    - Fill in the blanks
-    - Short answer questions
+Generate 10 NCERT-style practice questions from this chapter.
 
-    Give answers and Hinglish explanations.
+Class: {grade}
+Subject: {subject}
 
-    Use only Roman letters.
-    No Hindi script.
-    """
+Chapter Content:
+{pdf_text}
+
+Include:
+
+* MCQs
+* Fill in the blanks
+* Short answer questions
+
+Give answers and Hinglish explanations.
+
+Use only Roman letters.
+No Hindi script.
+"""
+
+        else:
+            content = f"""
+
+
+Generate 10 NCERT-style practice questions.
+
+Class: {grade}
+Subject: {subject}
+Topic: {topic}
+
+Include:
+
+* MCQs
+* Fill in the blanks
+* Short answer questions
+
+Give answers and Hinglish explanations.
+
+Use only Roman letters.
+No Hindi script.
+"""
+
+
+        response = client.chat.completions.create(
+            model="openrouter/auto",
+            messages=[{
+                "role": "user",
+                "content": content
+            }]
+        )
+
+        st.write(response.choices[0].message.content)
+
 else:
-    content = f"""
-    Generate 10 NCERT-style practice questions.
-
-    Class: {grade}
-    Subject: {subject}
-    Topic: {topic}
-
-    Include:
-    - MCQs
-    - Fill in the blanks
-    - Short answer questions
-
-    Give answers and Hinglish explanations.
-
-    Use only Roman letters.
-    No Hindi script.
-    """
-            response = client.chat.completions.create(
-                model = "openrouter/auto",
-                messages=[{
-                    "role" : "user",
-                   "content": content
-                }]
-            )
-            st.write(response.choices[0].message.content)
-    else :
-        st.warning("pehle topic likho!")
+    st.warning("pehle topic likho!")
