@@ -150,7 +150,7 @@ if st.button("practice question"):
     if topic or uploaded_file:
         with st.spinner("Practice Question bana raha hai"):
             if uploaded_file:
-    content = f"""
+                content = f"""
     Generate 10 NCERT-style practice questions from this chapter.
 
     Class: {grade}
