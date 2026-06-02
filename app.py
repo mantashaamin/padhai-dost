@@ -50,7 +50,7 @@ if st.button("Notes banao! 📝"):
         with st.spinner("Notes ban rahe hain..."):
             # Decide content based on PDF or topic
             if uploaded_file:
-                content = f"You are Padhai Dost. Create clean revision notes in Hinglish for {grade} student. Subject: {subject}. Here is the chapter content: {pdf_text}. Create detailed notes from this content. STRICTLY Hinglish only, NO Hindi script."
+                content = f"You are Padhai Dost. Create clean revision notes in english also immediately their hinglish version below it for {grade} student. Subject: {subject}. Here is the chapter content: {pdf_text}. Create detailed notes from this content. NO Hindi script."
             else:
                 content = f"You are Padhai Dost. Create clean revision notes in Hinglish for {grade} student. Subject: {subject}. Topic: {topic}. STRICTLY Hinglish only, NO Hindi script."
             response = client.chat.completions.create(
