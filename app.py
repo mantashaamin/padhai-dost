@@ -129,7 +129,19 @@ RULES:
             st.write(response.choices[0].message.content)
     else:
         st.warning("PDF upload karo ya Pehle topic likho!")
+        
+
+
+   
+# ==========================================
+
+# PRACTICE QUESTIONS SECTION
+
+# ==========================================
+
 st.divider()
+
+# Select question type
 
 question_type = st.selectbox(
 "Question Type",
@@ -142,16 +154,22 @@ question_type = st.selectbox(
 ]
 )
 
-topic = st.text_input("Topic Likho(Practice question ke liye ):")
+# Topic input (used when no PDF is uploaded)
 
-if st.button("practice question"):
-if topic or uploaded_file:
+topic = st.text_input("Topic Likho (Practice question ke liye):")
 
-    with st.spinner("Practice Question bana raha hai"):
+# Generate Questions Button
 
-        if uploaded_file:
-            content = f"""
-```
+if st.button("Practice Question"):
+    if topic or uploaded_file: # User must either upload a PDF or enter a topic
+        with st.spinner("Practice Question bana raha hai..."): 
+        # ------------------------------------------
+        # PDF MODE
+        # Generate questions from uploaded chapter
+        # ------------------------------------------
+            if uploaded_file:
+                content = f"""
+
 
 Generate 10 NCERT-style practice questions from this chapter.
 
@@ -173,8 +191,13 @@ Use only Roman letters.
 No Hindi script.
 """
 
-        else:
-            content = f"""
+
+        # ------------------------------------------
+        # TOPIC MODE
+        # Generate questions from entered topic
+        # ------------------------------------------
+            else:
+                content = f"""
 
 
 Generate 10 NCERT-style practice questions.
@@ -196,15 +219,21 @@ No Hindi script.
 """
 
 
+        # Send prompt to OpenRouter
         response = client.chat.completions.create(
             model="openrouter/auto",
-            messages=[{
-                "role": "user",
-                "content": content
-            }]
+            messages=[
+                {
+                    "role": "user",
+                    "content": content
+                }
+            ]
         )
 
+        # Display generated questions
         st.write(response.choices[0].message.content)
 
+# User entered nothing
 else:
-    st.warning("pehle topic likho!")
+    st.warning("Pehle topic likho ya PDF upload karo!")
+
