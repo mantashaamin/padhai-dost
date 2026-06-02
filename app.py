@@ -50,9 +50,75 @@ if st.button("Notes banao! 📝"):
         with st.spinner("Notes ban rahe hain..."):
             # Decide content based on PDF or topic
             if uploaded_file:
-                content = f"You are Padhai Dost. Create clean revision notes in english also immediately their hinglish version below it for {grade} student. Subject: {subject}. Here is the chapter content: {pdf_text}. Create detailed notes from this content. NO Hindi script."
+                content = f"""
+                You are Padhai Dost.
+Student Class: {grade}
+Subject: {subject}
+
+Chapter Content:
+{pdf_text}
+
+Create EXAM-ORIENTED REVISION NOTES from this chapter.
+
+For every topic include:
+
+## English Notes
+- Key concepts
+- Definitions
+- Important facts
+
+## Hinglish Samjho
+- Explain like a friendly teacher
+- English alphabets only
+- No Hindi script
+
+## Important Exam Points
+
+## Quick Revision
+
+After all topics add:
+
+# Chapter Summary
+
+# 5 Second Revision
+
+RULES:
+- Use headings and bullet points
+- Use tables when useful
+- Do not simply translate English into Hinglish
+- Focus on understanding and exam preparation
+- Suitable for Class {grade}
+"""
             else:
-                content = f"You are Padhai Dost. Create clean revision notes in Hinglish for {grade} student. Subject: {subject}. Topic: {topic}. STRICTLY Hinglish only, NO Hindi script."
+                content = f"""
+You are Padhai Dost.
+Create EXAM-ORIENTED REVISION NOTES for a Class {grade} student.
+
+Subject: {subject}
+Topic: {topic}
+
+OUTPUT FORMAT:
+
+# Topic Name
+
+## English Notes
+
+## Hinglish Samjho
+
+## Important Exam Points
+
+## Quick Revision
+
+## 5 Second Revision
+
+RULES:
+- Use simple language
+- Explain concepts clearly
+- Hinglish must use English alphabets only
+- No Hindi script
+- Use bullet points and tables where useful
+- Focus on exam preparation
+"""
             response = client.chat.completions.create(
                 model="openrouter/auto",
                 messages=[{
@@ -64,16 +130,68 @@ if st.button("Notes banao! 📝"):
     else:
         st.warning("PDF upload karo ya Pehle topic likho!")
 # ADD NEW CODE HERE  FOR PRACTICE QUESTION 👇
-st.divider()
+st.divider()  
+
+
+question_type = st.selectbox(
+    "Question Type",
+    [
+        "Mixed",
+        "MCQ Only",
+        "Fill in the Blanks",
+        "Short Answer",
+        "Exam Prep Mode"
+    ]
+)
+
+topic = st.text_input("Topic Likho(Practice question ke liye ):")
 topic = st.text_input("Topic Likho(Practice question ke liye ):")
 if st.button("practice question"):
-    if topic :
+    if topic or uploaded_file:
         with st.spinner("Practice Question bana raha hai"):
+            if uploaded_file:
+    content = f"""
+    Generate 10 NCERT-style practice questions from this chapter.
+
+    Class: {grade}
+    Subject: {subject}
+
+    Chapter Content:
+    {pdf_text}
+
+    Include:
+    - MCQs
+    - Fill in the blanks
+    - Short answer questions
+
+    Give answers and Hinglish explanations.
+
+    Use only Roman letters.
+    No Hindi script.
+    """
+else:
+    content = f"""
+    Generate 10 NCERT-style practice questions.
+
+    Class: {grade}
+    Subject: {subject}
+    Topic: {topic}
+
+    Include:
+    - MCQs
+    - Fill in the blanks
+    - Short answer questions
+
+    Give answers and Hinglish explanations.
+
+    Use only Roman letters.
+    No Hindi script.
+    """
             response = client.chat.completions.create(
                 model = "openrouter/auto",
                 messages=[{
                     "role" : "user",
-                   "content": f"You are Padhai Dost. Generate 5 NCERT-style practice questions for {grade} student. Subject: {subject}. Topic: {topic}. Format: Question in English with Hinglish translation in brackets. Answer in proper NCERT English terms with Hinglish explanation in brackets. Include MCQ, fill in the blanks and short answer types. STRICTLY use Hinglish only - NO Hindi script/Devanagari script allowed anywhere. Write everything in Roman letters only. Example heading: '1. MCQ (Multiple Choice Question)' NOT '1. MCQ (बहुविकल्पीय प्रश्न)'"
+                   "content": content
                 }]
             )
             st.write(response.choices[0].message.content)
