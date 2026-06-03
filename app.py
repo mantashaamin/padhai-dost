@@ -200,6 +200,17 @@ Chapter Content:
 
 Give answers and Hinglish explanations.
 
+IMPORTANT:
+- Do NOT use HTML tags.
+- Do NOT use <br>, <table>, <tr>, <td>.
+- Use normal line breaks only.
+- Format MCQ options like:
+
+A) Option 1
+B) Option 2
+C) Option 3
+D) Option 4
+
 Use only Roman letters.
 No Hindi script.
 """
@@ -222,6 +233,17 @@ Topic: {topic}
 {question_instruction}
 
 Give answers and Hinglish explanations.
+
+IMPORTANT:
+- Do NOT use HTML tags.
+- Do NOT use <br>, <table>, <tr>, <td>.
+- Use normal line breaks only.
+- Format MCQ options like:
+
+A) Option 1
+B) Option 2
+C) Option 3
+D) Option 4
 
 Use only Roman letters.
 No Hindi script.
