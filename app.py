@@ -134,6 +134,17 @@ st.divider()
 # Select question type
 # Decide question format based on dropdown
 
+
+question_type = st.selectbox(
+"Question Type",
+[
+"Mixed",
+"MCQ Only",
+"Fill in the Blanks",
+"Short Answer",
+"Exam Prep Mode"
+]
+)
 if question_type == "MCQ Only":
     question_instruction = "Generate 10 MCQ questions only."
 
@@ -159,17 +170,6 @@ Generate:
 - 3 Fill in the Blanks
 - 3 Short Answer Questions
 """
-
-question_type = st.selectbox(
-"Question Type",
-[
-"Mixed",
-"MCQ Only",
-"Fill in the Blanks",
-"Short Answer",
-"Exam Prep Mode"
-]
-)
 
 # Topic input (used when no PDF is uploaded)
 
@@ -219,11 +219,7 @@ Class: {grade}
 Subject: {subject}
 Topic: {topic}
 
-Include:
-
-* MCQs
-* Fill in the blanks
-* Short answer questions
+{question_instruction}
 
 Give answers and Hinglish explanations.
 
