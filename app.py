@@ -198,7 +198,24 @@ Chapter Content:
 
 {question_instruction}
 
-Give answers and Hinglish explanations.
+For EVERY MCQ use this exact format:
+
+Question:
+(English)
+
+Hinglish:
+(Same question in easy Hinglish)
+
+A) ...
+B) ...
+C) ...
+D) ...
+
+Answer:
+...
+
+Hinglish Explanation:
+...
 
 IMPORTANT:
 - Do NOT use HTML tags.
@@ -232,7 +249,24 @@ Topic: {topic}
 
 {question_instruction}
 
-Give answers and Hinglish explanations.
+For EVERY MCQ use this exact format:
+
+Question:
+(English)
+
+Hinglish:
+(Same question in easy Hinglish)
+
+A) ...
+B) ...
+C) ...
+D) ...
+
+Answer:
+...
+
+Hinglish Explanation:
+...
 
 IMPORTANT:
 - Do NOT use HTML tags.
