@@ -130,15 +130,6 @@ RULES:
     else:
         st.warning("PDF upload karo ya Pehle topic likho!")
         
-
-
-   
-# ==========================================
-
-# PRACTICE QUESTIONS SECTION
-
-# ==========================================
-
 st.divider()
 
 # Select question type
