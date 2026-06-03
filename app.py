@@ -234,6 +234,6 @@ No Hindi script.
         st.write(response.choices[0].message.content)
 
 # User entered nothing
-else:
-    st.warning("Pehle topic likho ya PDF upload karo!")
+    else:
+        st.warning("Pehle topic likho ya PDF upload karo!")
 
