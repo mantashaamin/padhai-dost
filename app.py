@@ -230,7 +230,7 @@ No Hindi script.
             ]
         )
 
-        # Display generated questions
+        # Display generated questions 
         st.write(response.choices[0].message.content)
 
 # User entered nothing
