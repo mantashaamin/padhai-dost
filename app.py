@@ -131,8 +131,34 @@ RULES:
         st.warning("PDF upload karo ya Pehle topic likho!")
         
 st.divider()
-
 # Select question type
+# Decide question format based on dropdown
+
+if question_type == "MCQ Only":
+    question_instruction = "Generate 10 MCQ questions only."
+
+elif question_type == "Fill in the Blanks":
+    question_instruction = "Generate 10 Fill in the Blank questions only."
+
+elif question_type == "Short Answer":
+    question_instruction = "Generate 10 Short Answer questions only."
+
+elif question_type == "Exam Prep Mode":
+    question_instruction = """
+Generate:
+- 5 MCQs
+- 5 Fill in the Blanks
+- 5 Short Answer Questions
+- 2 Long Answer Questions
+"""
+
+else:
+    question_instruction = """
+Generate:
+- 4 MCQs
+- 3 Fill in the Blanks
+- 3 Short Answer Questions
+"""
 
 question_type = st.selectbox(
 "Question Type",
@@ -170,11 +196,7 @@ Subject: {subject}
 Chapter Content:
 {pdf_text}
 
-Include:
-
-* MCQs
-* Fill in the blanks
-* Short answer questions
+{question_instruction}
 
 Give answers and Hinglish explanations.
 
