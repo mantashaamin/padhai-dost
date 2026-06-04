@@ -185,11 +185,11 @@ streamlit run app.py
 
 **Mantasha Parween**
 
-B.Tech Student | Builder | AI Enthusiast
+CS Major | Builder | AI Enthusiast
 
-GitHub: https://github.com/mantashaamin
+https://www.linkedin.com/in/mantasha-parween-156765314/
 
-Hashnode: https://padhai-dost.hashnode.dev
+Hashnode: https://hashnode.com/@mantashaa
 
 ---
 
