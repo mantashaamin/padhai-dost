@@ -29,6 +29,23 @@ The inspiration came from my younger brother (Class 6) and sister (Class 9), who
 - Hinglish Explanation section
 - Important Exam Points
 - Quick Revision Summary
+- ## 📸 Screenshots
+
+### AI Topic Explainer
+
+![AI Topic Explainer](images/topic-explainer.png)
+
+---
+
+### PDF Notes Generator
+
+![PDF Notes Generator](images/pdf-notes.png)
+
+---
+
+### Practice Questions
+
+![Practice Questions](images/practice-questions.png)
 
 ### 📄 PDF Learning
 - Upload digital NCERT PDFs
