@@ -33,19 +33,19 @@ The inspiration came from my younger brother (Class 6) and sister (Class 9), who
 
 ### AI Topic Explainer
 
-![AI Topic Explainer](images/topic-explainer.png)
+![AI Topic Explainer](IMAGES/topic-explainer.png)
 
 ---
 
 ### PDF Notes Generator
 
-![PDF Notes Generator](images/pdf-notes.png)
+![PDF Notes Generator](IMAGES/pdf-notes.png)
 
 ---
 
 ### Practice Questions
 
-![Practice Questions](images/practice-questions.png)
+![Practice Questions](IMAGES/practice-questions.png)
 
 ### 📄 PDF Learning
 - Upload digital NCERT PDFs
